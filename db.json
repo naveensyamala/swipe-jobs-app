@@ -1,0 +1,56 @@
+{
+  "jobs":[
+    {
+      "id": 1,
+      "jobName": "Construction General Worker",
+      "jobCompany": "C.D Burners & Associates",
+      "jobLogo":"constuction-worker",
+      "shifts": ["APR 7, WED 8:00 AM - 10:00 PM PDT", "APR 7, WED 8:00 AM - 10:00 PM PDT"],
+      "location": "123 Main Street, Tacoma, WA 98409",
+      "requirements": ["Safety Vests", "Hard Hat"],
+      "reportName": "Dave Jhones",
+      "reportContact": "(123) 456 789",
+      "jobDistance": "5. 6 miles",
+      "jobPay": "$ 50.50"
+    },
+    {
+      "id": 2,
+      "jobName": "Software Engineer",
+      "jobCompany": "SwipeJobs",
+      "jobLogo":"software-engineer",
+      "shifts": ["APR 7, WED 8:00 AM - 10:00 PM PDT", "APR 7, WED 8:00 AM - 10:00 PM PDT"],
+      "location": "123 Main Street, Tacoma, NSW 98409",
+      "requirements": ["Developing", "Tesing", "Deploying"],
+      "reportName": "Dave Jhones",
+      "reportContact": "(123) 456 789",
+      "jobDistance": "4 miles",
+      "jobPay": "$ 60.50"
+    },
+    {
+      "id": 3,
+      "jobName": "Enginering Manager",
+      "jobCompany": "ANZ Bank",
+      "jobLogo":"engineering-manger",
+      "shifts": ["APR 8, THR 8:00 AM - 10:00 PM PDT", "APR 8, THR 8:00 AM - 10:00 PM PDT"],
+    "location": "123 pitt, Tacoma, QLD 98409",
+      "requirements": ["Designing", "Recruiting"],
+      "reportName": "Dave Jhones",
+      "reportContact": "(123) 456 789",
+      "jobDistance": "15. 6 miles",
+      "jobPay": "$ 80.50"
+    },
+    {
+      "id": 4,
+      "jobName": "Business Analyst",
+      "jobCompany": "Swipe Jobs",
+      "jobLogo":"business-analyst",
+      "shifts": ["APR 7, WED 8:00 AM - 10:00 PM PDT", "APR 7, WED 8:00 AM - 10:00 PM PDT"],
+      "location": "123 Main Street, Tacoma, WA 98409",
+      "requirements": ["Requiremtn Gataering"],
+      "reportName": "Dave Jhones",
+      "reportContact": "(123) 456 789",
+      "jobDistance": "5. 6 Km",
+      "jobPay": "$ 60.50"
+    }
+  ]
+}
