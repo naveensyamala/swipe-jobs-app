@@ -7,8 +7,18 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import Moment from 'moment';
 
 const JobDetails = ({shifts, location, requirements, reportName, reportContact}) => {
+
+    const phoneNoFormat = (num) => {
+        var cleaned = ('' + num).replace(/\D/g, '');
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+          return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        }
+        return null;
+      }
 
     return (
         <Card variant="outlined">
@@ -29,7 +39,7 @@ const JobDetails = ({shifts, location, requirements, reportName, reportContact})
                     {shifts.map((shift, index) => (
                         <Grid item xs={12} >
                             <Typography gutterBottom variant="subtitle1" component="span">
-                                {shift.startDate} {shift.startDate}
+                                {Moment(shift.startDate).format('MMM DD, ddd HH:ss A zz')} - { Moment(shift.endDate).format('MMM DD, ddd HH:ss A zz')}
                             </Typography>
                         </Grid>
                     ))}
@@ -92,7 +102,7 @@ const JobDetails = ({shifts, location, requirements, reportName, reportContact})
                     </Grid>
                     <Grid item xs={12} >
                         <Typography gutterBottom variant="subtitle1" component="span">
-                            {reportName} {reportContact}
+                            {reportName} {phoneNoFormat(reportContact)}
                         </Typography>
                     </Grid>
                     </Grid>
@@ -103,11 +113,11 @@ const JobDetails = ({shifts, location, requirements, reportName, reportContact})
 }
 
 JobDetails.defaultProps = {
-    shifts: ['APR 7, WED 8:00 AM - 10:00 PM PDT', 'APR 7, WED 8:00 AM - 10:00 PM PDT'],
-    location: "123 Main Street, Tacoma, WA 98409",
-    requirements: ['Safety Vests', 'Hard Hat'],
-    reportName: 'Dave Jhones',
-    reportContact: '(123) 456 789'
+    shifts: [],
+    location: "",
+    requirements: [],
+    reportName: '',
+    reportContact: ''
 }
 
 JobDetails.propTypes = {

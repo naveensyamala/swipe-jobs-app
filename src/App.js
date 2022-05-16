@@ -1,14 +1,13 @@
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import './App.css';
 import { useState, useEffect } from "react";
 import DisplayJobs from "./components/DisplayJobs";
 
 function App() {
 
-  const [myAssignedJobs, setMyAssignedJobs] = useState([])
   const [jobs, setJobs] = useState([])
   const [currentJob, setCurrentJob] = useState({})
+  const [currentJobIndex, setCurrentJobIndex] = useState(-1)
   const [profile, setProfile] = useState([])
   const workerId = '7f90df6e-b832-44e2-b624-3143d428001f'
   useEffect(() => {
@@ -29,9 +28,9 @@ function App() {
   const fetchJobInfo = async() => {
     const res = await fetch(`https://test.swipejobs.com/api/worker/${workerId}/matches`)  
     const data = await res.json()
-    console.info(data)
     if(data!= null && data.length!== 0){
       setCurrentJob(data[0])
+      setCurrentJobIndex(0)
     }
     return data
   }
@@ -43,30 +42,35 @@ function App() {
     return data
   }
 
+  const acceptJob = async(jobId) => {
+    const res = await fetch(`https://test.swipejobs.com/api/worker/${workerId}/job/${jobId}/accept`)  
+    const data = await res.json()
+    return data
+  }
+  
+  const rejectJob = async(jobId) => {
+    const res = await fetch(`https://test.swipejobs.com/api/worker/${workerId}/job/${jobId}/reject`)  
+    const data = await res.json()
+    console.info(data)
+    return data
+  }
+
 
   const onPrevious = () => {
-    if(currentJob.id > 1){
-      setCurrentJob(jobs[currentJob.id-2])
+    console.info(currentJobIndex)
+    if(currentJobIndex > 0){
+      setCurrentJobIndex(currentJobIndex - 1)
+      setCurrentJob(jobs[currentJobIndex - 1])
     }
   }
 
   const onNext = () => {
-    if(currentJob.id < jobs.length){
-      setCurrentJob(jobs[currentJob.id])
+    if(currentJobIndex < jobs.length-1){
+      setCurrentJobIndex(currentJobIndex + 1)
+      setCurrentJob(jobs[currentJobIndex + 1])
     }
   }
-  
-  const addToMyJobs = (id) => {
-    myAssignedJobs.push(jobs[currentJob.id-1])
-  }
 
-  const removeJob = (id) => {
-    console.info(id)
-    console.info(myAssignedJobs)
-    console.info(jobs[currentJob.id-1])
-    myAssignedJobs.push(jobs[currentJob.id-1])
-    console.info(myAssignedJobs)
-  }
 
   return (
     <Router>
@@ -76,11 +80,13 @@ function App() {
           path = '/'  
           element = {
           <DisplayJobs 
-          currentJob={currentJob} 
-          onNext={onNext} 
-          jobs ={jobs} 
-          onPrevious ={onPrevious}
-          addToMyJobs = {addToMyJobs}
+          currentJob={ currentJob } 
+          currentJobIndex = {currentJobIndex}
+          onNext={ onNext } 
+          jobs ={ jobs } 
+          onPrevious ={ onPrevious }
+          acceptJob = { acceptJob }
+          rejectJob= { rejectJob }
           />}>
         </Route>
       </Routes>

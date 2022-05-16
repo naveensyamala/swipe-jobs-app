@@ -8,6 +8,10 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const JobPay = ({jobDistance, jobPay}) => {
 
+    const currencyFormat = (num) => {
+        return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+     }
+
     const theme = createTheme({
         palette: {
             background: {
@@ -33,12 +37,12 @@ const JobPay = ({jobDistance, jobPay}) => {
                 </Grid>
                 <Grid item xs={6} color="common.white">
                     <Typography gutterBottom variant="h5" component="span">
-                        {jobDistance}
+                        {jobDistance} miles
                     </Typography>
                 </Grid>
                 <Grid item xs={6} color="common.white">
                     <Typography gutterBottom variant="h5" component="span">
-                        {jobPay}
+                        {currencyFormat(jobPay)}
                     </Typography>
                 </Grid>
             </Grid>
@@ -50,13 +54,13 @@ const JobPay = ({jobDistance, jobPay}) => {
 }
 
 JobPay.defaultProps = {
-    jobDistance: '5. 6 miles',
-    jobPay: '$ 13.50',
+    jobDistance: 5,
+    jobPay: 10,
 }
 
 JobPay.propTypes = {
-    jobDistance: PropTypes.string.isRequired,
-    jobPay: PropTypes.string.isRequired,
+    jobDistance: PropTypes.number.isRequired,
+    jobPay: PropTypes.number.isRequired,
 }
 
 
